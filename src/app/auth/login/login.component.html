@@ -1,0 +1,71 @@
+<app-card>
+  <form class="auth-form-group" (ngSubmit)="onSubmit()" [formGroup]="loginForm">
+    <p>
+      <mat-form-field class="auth-form" appearance="outline">
+        <mat-label>Email</mat-label>
+        <input
+          id="username"
+          required=""
+          formControlName="username"
+          type="text"
+          matInput
+        />
+
+        <mat-error
+          *ngIf="
+            loginForm.get('username')?.invalid &&
+            (loginForm.get('username')?.dirty ||
+              loginForm.get('username')?.touched)
+          "
+        >
+          <mat-error *ngIf="loginForm.get('username')?.errors?.['required']"
+            >Email is required.</mat-error
+          >
+          <mat-error *ngIf="loginForm.get('username')?.errors?.['email']"
+            >Provide correct email address.</mat-error
+          >
+        </mat-error>
+      </mat-form-field>
+    </p>
+
+    <p>
+      <mat-form-field class="auth-form" appearance="outline">
+        <mat-label>Password</mat-label>
+        <input
+          formControlName="password"
+          required=""
+          type="password"
+          matInput
+        />
+
+        <mat-error
+          *ngIf="
+            loginForm.get('password')?.invalid &&
+            (loginForm.get('password')?.dirty ||
+              loginForm.get('password')?.touched)
+          "
+        >
+          <mat-error *ngIf="loginForm.get('password')?.errors?.['required']"
+            >Password is required.</mat-error
+          >
+        </mat-error>
+      </mat-form-field>
+    </p>
+    <mat-card-content align="center"> </mat-card-content>
+    <mat-card-content align="center">
+      <button
+        type="submit"
+        [disabled]="loginForm.invalid || (loadingService.isLoading$ | async)"
+        mat-raised-button
+        color="primary"
+      >
+        Sign in
+      </button>
+      <mat-progress-bar
+        class="bar-margin"
+        *ngIf="loadingService.isLoading$ | async"
+        mode="indeterminate"
+      ></mat-progress-bar>
+    </mat-card-content>
+  </form>
+</app-card>

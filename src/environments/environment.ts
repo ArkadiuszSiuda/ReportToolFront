@@ -3,7 +3,15 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+};
+export const API_PATHS = {
+  base: 'https://localhost:7101/api',
+  register: '/register',
+  login: '/login',
+  codes: '/codes',
+  products: '/products',
+  reports: '/reports',
 };
 
 /*

@@ -1,1 +1,47 @@
 /* You can add global styles to this file, and also import other style files */
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: #f8f8f8;
+}
+
+.auth-form-group {
+  margin: 3em 5em 5em 5em;
+}
+
+.auth-form {
+  min-width: 20em;
+  margin-bottom: 2em;
+}
+
+.auth-big-hint {
+  margin-bottom: 20em;
+}
+
+.error-snackbar {
+  background: #f44336;
+  color: white;
+}
+.error-snackbar button {
+  background-color: #f44336;
+  color: white !important;
+  border: none;
+}
+
+.notify-snackbar {
+  background: #3f51b5;
+  color: white;
+}
+.notify-snackbar button {
+  background-color: #3f51b5;
+  color: white !important;
+  border: none;
+}
+
+.bar-margin {
+  margin: 1em;
+}
