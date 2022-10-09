@@ -1,1 +1,52 @@
-<p>report works!</p>
+<div class="add-button">
+  <button mat-raised-button (click)="setReport()" color="primary">
+    Add report
+  </button>
+</div>
+<div class="reports-container">
+  <table mat-table [dataSource]="(reports$ | async)!" class="mat-elevation-z8">
+    <ng-container matColumnDef="code">
+      <th mat-header-cell *matHeaderCellDef>Code</th>
+      <td mat-cell *matCellDef="let element">{{ element.code.name }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="product">
+      <th mat-header-cell *matHeaderCellDef>Product</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.product.company }} {{ element.product.name }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="toReproduce">
+      <th mat-header-cell *matHeaderCellDef>To reproduce</th>
+      <td mat-cell *matCellDef="let element">{{ element.toReproduce }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="reproducibility">
+      <th mat-header-cell *matHeaderCellDef>Reproducibility</th>
+      <td mat-cell *matCellDef="let element">{{ element.reproducibility }}%</td>
+    </ng-container>
+
+    <ng-container matColumnDef="comment">
+      <th mat-header-cell *matHeaderCellDef>Comment</th>
+      <td mat-cell *matCellDef="let element" [matTooltip]="element.comment">
+        <mat-icon> comment </mat-icon>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Action</th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-icon-button (click)="setReport(element.id)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button (click)="deleteReport(element.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</div>

@@ -1,0 +1,8 @@
+<div mat-dialog-content>
+  This Product is associated with {{ affected }} reports. Do you want to delete
+  it anyway?
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button (click)="onClick()" cdkFocusInitial>Ok</button>
+</div>

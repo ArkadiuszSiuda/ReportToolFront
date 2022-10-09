@@ -50,4 +50,8 @@ export class CodesService {
       this.getCodes();
     });
   }
+
+  public affects(id: string | null) {
+    return this.client.get<number>(`${CODES_API_PATH}/affects/${id}`);
+  }
 }

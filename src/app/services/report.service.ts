@@ -4,7 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 import { API_PATHS } from 'src/environments/environment';
 import { Report } from '../models/report';
 
-const CATEGORY_API_PATH = `${API_PATHS.base}${API_PATHS.codes}`;
+const REPORTS_API_PATH = `${API_PATHS.base}${API_PATHS.reports}`;
 
 @Injectable({
   providedIn: 'root',
@@ -17,22 +17,24 @@ export class ReportService {
 
   public getReports() {
     return this.client
-      .get<Report[]>(CATEGORY_API_PATH)
+      .get<Report[]>(REPORTS_API_PATH)
       .subscribe((data: Report[]) => {
         this.reports$.next(data);
       });
   }
 
   public getReport(id: string | null) {
-    return this.client.get<Report>(`${CATEGORY_API_PATH}/${id}`);
+    return this.client.get<Report>(`${REPORTS_API_PATH}/${id}`);
   }
 
   public postReport(report: Report) {
     return this.client
-      .post(CATEGORY_API_PATH, {
+      .post(REPORTS_API_PATH, {
         comment: report.comment,
         toReproduce: report.toReproduce,
         reproducibility: report.reproducibility,
+        codeId: report.codeId,
+        productId: report.productId,
       })
       .subscribe(() => {
         this.getReports();
@@ -41,10 +43,12 @@ export class ReportService {
 
   public updateReport(report: Report, id: string | null) {
     return this.client
-      .put(`${CATEGORY_API_PATH}/${id}`, {
+      .put(`${REPORTS_API_PATH}/${id}`, {
         comment: report.comment,
         toReproduce: report.toReproduce,
         reproducibility: report.reproducibility,
+        codeId: report.codeId,
+        productId: report.productId,
       })
       .subscribe(() => {
         this.getReports();
@@ -52,6 +56,8 @@ export class ReportService {
   }
 
   public deleteReport(id: string | null) {
-    return this.client.delete(`${CATEGORY_API_PATH}/${id}`);
+    return this.client.delete(`${REPORTS_API_PATH}/${id}`).subscribe(() => {
+      this.getReports();
+    });
   }
 }

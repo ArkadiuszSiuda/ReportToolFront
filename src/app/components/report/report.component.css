@@ -1,0 +1,13 @@
+table {
+  width: 90%;
+}
+
+.reports-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.add-button {
+  margin: 2em;
+}

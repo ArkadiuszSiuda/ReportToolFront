@@ -1,0 +1,56 @@
+<div mat-dialog-content>
+  <form [formGroup]="reportForm">
+    <p>
+      <mat-form-field class="auth-form" appearance="outline">
+        <mat-label>Codes</mat-label>
+        <mat-select formControlName="codeId">
+          <mat-option *ngFor="let code of (codes$ | async)!" [value]="code.id">
+            {{ code.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </p>
+
+    <p>
+      <mat-form-field class="auth-form" appearance="outline">
+        <mat-label>Products</mat-label>
+        <mat-select formControlName="productId">
+          <mat-option
+            *ngFor="let product of (products$ | async)!"
+            [value]="product.id"
+          >
+            {{ product.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field class="auth-form" appearance="outline">
+        <mat-label>To reproduce</mat-label>
+        <input formControlName="toReproduce" type="text" matInput />
+      </mat-form-field>
+    </p>
+
+    <p>
+      <mat-form-field class="auth-form" appearance="outline">
+        <mat-label>Reproducibility</mat-label>
+        <input
+          formControlName="reproducibility"
+          type="number"
+          max="100"
+          matInput
+        />
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field class="auth-form" appearance="outline">
+        <mat-label>Comment</mat-label>
+        <input formControlName="comment" type="text" matInput />
+      </mat-form-field>
+    </p>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button (click)="onClick()" cdkFocusInitial>Ok</button>
+</div>

@@ -21,6 +21,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
+import { ProductFormDialogComponent } from './components/products/product-from-dialog/product-from-dialog.component';
+import { ReportFormDialogComponent } from './components/report/report-form-dialog/report-form-dialog.component';
+import { MatSelectModule } from '@angular/material/select';
+import { ProductDeleteDialogComponent } from './components/products/product-delete-dialog/product-delete-dialog.component';
+import { CodesDeleteDialogComponent } from './components/codes/codes-delete-dialog/codes-delete-dialog.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -29,6 +35,10 @@ import { MatDialogModule } from '@angular/material/dialog';
     CodesComponent,
     ProductsComponent,
     CodeFormDialogComponent,
+    ProductFormDialogComponent,
+    ReportFormDialogComponent,
+    ProductDeleteDialogComponent,
+    CodesDeleteDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,6 +53,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatFormFieldModule,
     MatInputModule,
     MatDialogModule,
+    MatSelectModule,
+    MatTooltipModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },

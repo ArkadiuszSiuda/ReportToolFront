@@ -4,7 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 import { API_PATHS } from 'src/environments/environment';
 import { Product } from '../models/product';
 
-const CATEGORY_API_PATH = `${API_PATHS.base}${API_PATHS.products}`;
+const PRODUCTS_API_PATH = `${API_PATHS.base}${API_PATHS.products}`;
 
 @Injectable({
   providedIn: 'root',
@@ -17,19 +17,19 @@ export class ProductsService {
 
   public getProducts() {
     return this.client
-      .get<Product[]>(CATEGORY_API_PATH)
+      .get<Product[]>(PRODUCTS_API_PATH)
       .subscribe((data: Product[]) => {
         this.products$.next(data);
       });
   }
 
   public getProduct(id: string | null) {
-    return this.client.get<Product>(`${CATEGORY_API_PATH}/${id}`);
+    return this.client.get<Product>(`${PRODUCTS_API_PATH}/${id}`);
   }
 
   public postProduct(product: Product) {
     return this.client
-      .post(CATEGORY_API_PATH, {
+      .post(PRODUCTS_API_PATH, {
         company: product.company,
         name: product.name,
       })
@@ -40,7 +40,7 @@ export class ProductsService {
 
   public updateProduct(product: Product, id: string | null) {
     return this.client
-      .put(`${CATEGORY_API_PATH}/${id}`, {
+      .put(`${PRODUCTS_API_PATH}/${id}`, {
         company: product.company,
         name: product.name,
       })
@@ -50,6 +50,12 @@ export class ProductsService {
   }
 
   public deleteProduct(id: string | null) {
-    return this.client.delete(`${CATEGORY_API_PATH}/${id}`);
+    return this.client.delete(`${PRODUCTS_API_PATH}/${id}`).subscribe(() => {
+      this.getProducts();
+    });
+  }
+
+  public affects(id: string | null) {
+    return this.client.get<number>(`${PRODUCTS_API_PATH}/affects/${id}`);
   }
 }

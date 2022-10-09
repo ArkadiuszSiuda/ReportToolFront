@@ -1,7 +1,8 @@
 <mat-toolbar color="primary">
-  <mat-icon routerLink="/timetable" class="title">access_time</mat-icon>
-  <span class="example-spacer"></span>
+  <span routerLink="/reports" class="title">ReportTool</span>
+
   <ng-container *ngIf="!isLoggedIn">
+    <span class="example-spacer"></span>
     <button
       class="link-button"
       routerLink="/login"
@@ -20,7 +21,31 @@
     </button>
   </ng-container>
   <ng-container *ngIf="isLoggedIn">
-    <button class="link-button" routerLink="/codes" mat-button>Codes</button>
+    <button
+      class="link-button"
+      routerLink="/reports"
+      mat-button
+      routerLinkActive="active"
+    >
+      Reports
+    </button>
+    <button
+      class="link-button"
+      routerLink="/codes"
+      mat-button
+      routerLinkActive="active"
+    >
+      Codes
+    </button>
+    <button
+      class="link-button"
+      routerLink="/products"
+      mat-button
+      routerLinkActive="active"
+    >
+      Products
+    </button>
+    <span class="example-spacer"></span>
     <button
       class="link-button"
       routerLink="/login"

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CodesService } from 'src/app/services/codes.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CodeFormDialogComponent } from './code-form-dialog/code-form-dialog.component';
+import { CodesDeleteDialogComponent } from './codes-delete-dialog/codes-delete-dialog.component';
 
 @Component({
   selector: 'app-codes',
@@ -24,6 +25,9 @@ export class CodesComponent {
   }
 
   deleteCode(id: string | null) {
-    this.codesService.deleteCode(id);
+    this.dialog.open(CodesDeleteDialogComponent, {
+      width: '450px',
+      data: id,
+    });
   }
 }
