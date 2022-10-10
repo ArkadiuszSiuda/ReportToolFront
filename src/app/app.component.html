@@ -29,22 +29,25 @@
     >
       Reports
     </button>
-    <button
-      class="link-button"
-      routerLink="/codes"
-      mat-button
-      routerLinkActive="active"
+    <ng-container *ngIf="isAdmin"
+      ><button
+        class="link-button"
+        routerLink="/codes"
+        mat-button
+        routerLinkActive="active"
+      >
+        Codes
+      </button>
+      <button
+        class="link-button"
+        routerLink="/products"
+        mat-button
+        routerLinkActive="active"
+      >
+        Products
+      </button></ng-container
     >
-      Codes
-    </button>
-    <button
-      class="link-button"
-      routerLink="/products"
-      mat-button
-      routerLinkActive="active"
-    >
-      Products
-    </button>
+
     <span class="example-spacer"></span>
     <button
       class="link-button"

@@ -15,6 +15,9 @@ export class UserService {
   private isLogged: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
     false
   );
+  private isAdmin: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
+    false
+  );
 
   constructor(private client: HttpClient) {}
 
@@ -46,6 +49,9 @@ export class UserService {
   private setSession(authResult: JwtResponse) {
     localStorage.setItem('token', authResult.token);
     localStorage.setItem('exp', `${authResult.expiration}`);
+    if (authResult.roles.includes('Admin')) {
+      this.isAdmin.next(true);
+    }
     this.isLogged.next(true);
   }
 
@@ -53,6 +59,7 @@ export class UserService {
     localStorage.removeItem('token');
     localStorage.removeItem('exp');
     this.isLogged.next(false);
+    this.isAdmin.next(false);
   }
 
   public isLoggedIn() {
@@ -65,5 +72,9 @@ export class UserService {
     }
 
     return this.isLogged;
+  }
+
+  public hasAdminRole(){
+    return this.isAdmin;
   }
 }

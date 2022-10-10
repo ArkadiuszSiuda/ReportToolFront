@@ -8,10 +8,14 @@ import { UserService } from './auth/services/user.service';
 })
 export class AppComponent {
   isLoggedIn = false;
+  isAdmin = false;
 
   constructor(private userService: UserService) {
     this.userService.isLoggedIn().subscribe((val) => {
       this.isLoggedIn = val;
+    });
+    this.userService.hasAdminRole().subscribe((val) => {
+      this.isAdmin = val;
     });
   }
 
